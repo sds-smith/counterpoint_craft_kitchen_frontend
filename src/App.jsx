@@ -10,7 +10,9 @@ function App() {
     console.log('[api base url', import.meta.env.VITE_API_BASE_URL)
     fetch(`${import.meta.env.VITE_API_BASE_URL}/items`)
       .then(response => response.json()
-      .then(items => setItems(items)))
+        .then(items => setItems(items)))
+        .catch(jsonErr => console.log({jsonErr}))
+      .catch(err => console.log({err}))
   },[])
 
   return (

@@ -1,19 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import ItemCard from './components/ItemCard'
+import { MenuContext } from './context/MenuContext'
 
 import './App.css'
 
 function App() {
-  const [items, setItems] = useState(null)
+  const { categories, items } = useContext(MenuContext);
 
-  useEffect(() => {
-    console.log('[api base url', import.meta.env.VITE_API_BASE_URL)
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/items`)
-      .then(response => response.json()
-        .then(items => setItems(items)))
-        .catch(jsonErr => console.log({jsonErr}))
-      .catch(err => console.log({err}))
-  },[])
+  useEffect(() => console.log({categories}), [categories])
+  useEffect(() => console.log({items}), [items])
 
   return (
     <>

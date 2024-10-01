@@ -12,22 +12,18 @@ const image = {
 export default function Menu() {
     const { categories } = useContext(MenuContext);
 
-    console.log('[menu]',{categories})
     return (
-        <>
-            <Grid container size={{xs: 12}} spacing={3}>
-                <h1>Menu</h1>
-                <Grid container size={{xs: 12}} sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-                { categories?.map(category => (
-                        <MenuButton
-                            key={category.id} 
-                            image={image}
-                            category={category}
-                        />
-                ))}
-                </Grid>
+        <Grid container size={{xs: 12}} spacing={3}>
+            <h1>Menu</h1>
+            <Grid container size={{xs: 12}} sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+            { categories?.map(category => (
+                <MenuButton
+                    key={category.id} 
+                    image={image}
+                    category={category}
+                />
+            ))}
             </Grid>
-        </>
-
+        </Grid>
     )
 }

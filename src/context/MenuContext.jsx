@@ -21,7 +21,7 @@ export const MenuProvider = ({children}) => {
     useEffect(() => {
       fetch(`${API_BASE_URL}/categories`)
         .then(response => response.json()
-          .then(categories => setCategories(buildCategoriesObj(categories))))
+          .then(categories => setCategories(categories)))
           .catch(jsonErr => console.log({jsonErr}))
         .catch(err => console.log({err}))
     },[buildCategoriesObj])
@@ -37,17 +37,20 @@ export const MenuProvider = ({children}) => {
     const menuItemsByCategory = useMemo(() => categories 
       ? items?.reduce((acc, curr) => ({
           ...acc,
-          [curr.category]: {
+          [curr.category?.toLowerCase()]: {
             ...acc[curr.category], 
             items: [...acc[curr.category].items, curr]
           }
-        }), categories) 
+        }), buildCategoriesObj(categories)) 
       : null, 
-    [categories, items])
+    [buildCategoriesObj, categories, items])
+
+   const getMenuItemsByCategory = (category) => menuItemsByCategory[category]
     
     const value = {
       categories, items,
-      menuItemsByCategory
+      menuItemsByCategory,
+      getMenuItemsByCategory
     };
 
     return <MenuContext.Provider value={value} >{children}</MenuContext.Provider>

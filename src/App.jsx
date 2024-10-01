@@ -1,33 +1,26 @@
-import { useContext, useEffect } from 'react'
-import ItemCard from './components/ItemCard'
-import { MenuContext } from './context/MenuContext'
+
+import { Routes, Route } from 'react-router-dom'
+import { ThemeProvider } from '@mui/material/styles';
+import Navigation from './routes/Navigation'
+import Landing from './components/Landing'
+import Menu from './components/Menu'
+import Category from './components/Category'
+import { theme } from './utils/theme';
 
 import './App.css'
 
 function App() {
-  const { categories, items } = useContext(MenuContext);
-
-  useEffect(() => console.log({categories}), [categories])
-  useEffect(() => console.log({items}), [items])
 
   return (
-    <>
-      { !items 
-        ? <h1>Loading</h1>
-        : (
-          <>
-            <h1>Menu</h1>
-            { items.map(item => (
-              <ItemCard
-                key={item.id}
-                item={item}
-              />
-            ))}
-          </>
-        )
-
-      }
-    </>
+    <ThemeProvider theme={theme} >
+      <Routes>
+        <Route path='/' element={<Navigation />}>
+          <Route index element={<Landing />} />
+          <Route path='order' element={<Menu />} />
+          <Route path='order/:category' element={<Category />} />
+        </Route>
+      </Routes>
+    </ThemeProvider>
   )
 }
 

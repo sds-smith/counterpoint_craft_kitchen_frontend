@@ -5,8 +5,10 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 export const MenuContext = createContext();
 
 export const MenuProvider = ({children}) => {
-    const [categories, setCategories] = useState(null)
-    const [items, setItems] = useState(null)
+  const [categories, setCategories] = useState(null)
+  const [categoriesLoading, setCategoriesLoading] = useState(true)
+  const [items, setItems] = useState(null)
+  const [itemsLoading, setItemsLoading] = useState(true)
 
     const buildCategoriesObj = useCallback((categoriesArr) => 
       categoriesArr.reduce((acc, curr) => ({
@@ -24,6 +26,7 @@ export const MenuProvider = ({children}) => {
           .then(categories => setCategories(categories)))
           .catch(jsonErr => console.log({jsonErr}))
         .catch(err => console.log({err}))
+        .finally(() => setCategoriesLoading(false))
     },[buildCategoriesObj])
   
     useEffect(() => {
@@ -32,6 +35,7 @@ export const MenuProvider = ({children}) => {
           .then(items => setItems(items)))
           .catch(jsonErr => console.log({jsonErr}))
         .catch(err => console.log({err}))
+        .finally(() => setItemsLoading(false))
     },[])
 
     const menuItemsByCategory = useMemo(() => categories 
@@ -41,13 +45,16 @@ export const MenuProvider = ({children}) => {
             ...acc[curr.category], 
             items: [...acc[curr.category].items, curr]
           }
-        }), buildCategoriesObj(categories)) 
-      : null, 
+        }), buildCategoriesObj(categories)) || {}
+      : {}, 
     [buildCategoriesObj, categories, items])
 
-   const getMenuItemsByCategory = (category) => menuItemsByCategory[category]
+   const getMenuItemsByCategory = (category) => menuItemsByCategory[category];
+
+   const loadingMenu = categoriesLoading || itemsLoading;
     
     const value = {
+      loadingMenu,
       categories, items,
       menuItemsByCategory,
       getMenuItemsByCategory

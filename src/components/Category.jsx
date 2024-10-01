@@ -4,22 +4,28 @@ import ItemCard from "./ItemCard"
 import { MenuContext } from "../context/MenuContext"
 
 export default function Category() {
-    const { category } = useParams();
-    const { getMenuItemsByCategory } = useContext(MenuContext);
+  const { category } = useParams();
+  const { getMenuItemsByCategory } = useContext(MenuContext);
 
-    const Category = getMenuItemsByCategory(category);
-    const {name, items} = Category
-    console.log('[Category]',{Category})
-    console.log('[Category]',{items})
+  const Category = getMenuItemsByCategory(category);
+
+  const name = Category?.name || '';
+  const items = Category?.items || [];
+
   return (
     <div>
-        <h1>{name}</h1>
-        {items.map(item => (
-            <ItemCard
+      { Category
+        ? <>
+            <h1>{name}</h1>
+            {items.map(item => (
+              <ItemCard
                 key={item.id}
                 item={item}
-            />
-        ))}
+              />
+            ))}
+          </>
+        : <h1>Loading</h1>
+      }
     </div>
   )
 }

@@ -71,7 +71,9 @@ const ImageMarked = styled('span')(({ theme }) => ({
 
 export default function MenuButton({category}) {
     const navigate = useNavigate();
-    const { search } = useLocation()
+    const { search } = useLocation();
+
+    const photoUrl = category.photo_url?.length ? category.photo_url : '/src/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg'
 
   return (
         <ImageButton
@@ -81,7 +83,7 @@ export default function MenuButton({category}) {
           }}
           onClick={() => navigate(`/order/${category.name.toLowerCase()}${search}`)}
         >
-          <ImageSrc style={{ backgroundImage: `url(${category.photo_url || '/src/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg'})` }} />
+          <ImageSrc style={{ backgroundImage: `url(${photoUrl})` }} />
           <ImageBackdrop className="MuiImageBackdrop-root" />
           <Image>
             <Typography

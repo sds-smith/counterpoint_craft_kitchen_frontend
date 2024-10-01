@@ -5,13 +5,15 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 export default function ItemCard({item}) {
+  const photoUrl = item.photo_url?.length ? item.photo_url : '/src/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg';
+
   return (
     <Card >
       <CardMedia
         component="img"
         alt={item.name}
         height="140"
-        image={item.photo_url || '/src/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg'}
+        image={photoUrl}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

@@ -73,7 +73,7 @@ export default function MenuButton({category}) {
     const navigate = useNavigate();
     const { search } = useLocation();
 
-    const photoUrl = category.photo_url?.length ? category.photo_url : '/src/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg'
+    const photoUrl = category.photo_url?.length ? category.photo_url : '/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg'
 
   return (
         <ImageButton

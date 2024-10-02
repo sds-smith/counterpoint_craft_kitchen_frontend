@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 export default function ItemCard({item}) {
-  const photoUrl = item.photo_url?.length ? item.photo_url : '/src/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg';
+  const photoUrl = item.photo_url?.length ? item.photo_url : '/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg';
 
   return (
     <Card >

@@ -1,5 +1,7 @@
 # Counterpoint Craft Kitchen
 
+As with some of my other personal portfolio work, this project serves as a playground where I can explore and experiment with new (well, new-to-me) technologies.
+
 Still very much in its infancy stage, this eCommerce React application is one part of a decoupled software system.
 
 This system integrates a Ruby on Rails application that exposes:

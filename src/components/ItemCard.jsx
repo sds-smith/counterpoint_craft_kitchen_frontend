@@ -1,14 +1,27 @@
 
+import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import defaultPhoto from '../lib/defaultPhoto'
 
 export default function ItemCard({item}) {
-  const photoUrl = item.photo_url?.length ? item.photo_url : '/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg';
+  const photoUrl = item.photo_url?.length ? item.photo_url : defaultPhoto[item.category];
+  const navigate = useNavigate();
+  const handleClick = () => {
+    const categoryPath = item.category.toLowerCase();
+    const itemPath = item.name.toLowerCase().replaceAll(' ', '_');
+    const searchParams = `id=${item.id}`
+    const url = `/order/${categoryPath}/${itemPath}?${searchParams}`
+    navigate(url)
+  }
 
   return (
-    <Card >
+    <Card 
+      className={`item_card${item.eightysix ? '_86' : ''}`} 
+      onClick={handleClick}
+    >
       <CardMedia
         component="img"
         alt={item.name}

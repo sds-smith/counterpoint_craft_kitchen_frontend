@@ -5,6 +5,7 @@ import Navigation from './routes/Navigation'
 import Landing from './components/Landing'
 import Menu from './components/Menu'
 import Category from './components/Category'
+import ItemOrderCard from './components/ItemOrderCard';
 import { MenuContext } from './context/MenuContext';
 import { theme } from './utils/theme';
 
@@ -22,6 +23,7 @@ function App() {
               <Route index element={<Landing />} />
               <Route path='order' element={<Menu />} />
               <Route path='order/:category' element={<Category />} />
+              <Route path='order/:category/:item' element={<ItemOrderCard />} />
             </Route>
           </Routes>
         )

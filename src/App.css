@@ -14,7 +14,7 @@
   left: 0;
   right: 0;
   z-index: -1;
-  background-image: url('/src/assets/d-pham-MU0pYUnrT68-unsplash.jpg');
+  background-image: url('/src/assets/landing.jpg');
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -25,6 +25,29 @@
   display: block;
   position: relative;
   z-index: 2;
+}
+
+.item_card {
+  height: 100%;
+}
+
+.item_card_86 {
+  position: relative;
+}
+
+.item_card_86:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* z-index: 2; */
+  background-color: white;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.5;
 }
 
 /* .logo {

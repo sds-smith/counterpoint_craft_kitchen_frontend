@@ -14,7 +14,7 @@ export default function Category() {
   const items = Category?.items || [];
 
   return (
-    <Grid container size={{xs: 12}} spacing={3}>
+    <Grid container size={{xs: 12}} spacing={1} sx={{margin: '10px'}}>
       { Category
         ? <>
             <Grid size={{xs: 12}}>

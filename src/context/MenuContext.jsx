@@ -13,7 +13,7 @@ export const MenuProvider = ({children}) => {
     const buildCategoriesObj = useCallback((categoriesArr) => 
       categoriesArr.reduce((acc, curr) => ({
         ...acc,
-        [curr.name]: {
+        [curr.name.toLowerCase()]: {
           ...curr,
           items: []
         }
@@ -43,21 +43,31 @@ export const MenuProvider = ({children}) => {
           ...acc,
           [curr.category?.toLowerCase()]: {
             ...acc[curr.category], 
-            items: [...acc[curr.category].items, curr]
+            items: [...acc[curr.category.toLowerCase()].items, curr]
           }
         }), buildCategoriesObj(categories)) || {}
       : {}, 
     [buildCategoriesObj, categories, items])
 
-   const getMenuItemsByCategory = (category) => menuItemsByCategory[category];
+    const menuItemsById = useMemo(() => items?.reduce((acc, curr) => ({
+      ...acc,
+      [curr.id]: curr
+    }), {}) || {}, [items])
+
+    const getMenuItemsByCategory = (category) => menuItemsByCategory[category];
+    const getMenuItemById = (id) => menuItemsById[id];
 
    const loadingMenu = categoriesLoading || itemsLoading;
+
+   console.log({      categories, items,
+    menuItemsByCategory,})
     
     const value = {
       loadingMenu,
       categories, items,
       menuItemsByCategory,
-      getMenuItemsByCategory
+      getMenuItemsByCategory,
+      getMenuItemById
     };
 
     return <MenuContext.Provider value={value} >{children}</MenuContext.Provider>

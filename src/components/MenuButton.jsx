@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
+import defaultPhoto from '../lib/defaultPhoto'
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: 'relative',
@@ -72,8 +73,7 @@ const ImageMarked = styled('span')(({ theme }) => ({
 export default function MenuButton({category}) {
     const navigate = useNavigate();
     const { search } = useLocation();
-
-    const photoUrl = category.photo_url?.length ? category.photo_url : '/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg'
+    const photoUrl = category.photo_url?.length ? category.photo_url : defaultPhoto[category.name]
 
   return (
         <ImageButton

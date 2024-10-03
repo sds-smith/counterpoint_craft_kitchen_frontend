@@ -25,11 +25,11 @@ const StyledFab = styled(Fab)({
 
 export default function Footer() {
   const { method } = useCartStore();
-    const navigate = useNavigate();
-    const fabIcon = {
-        pickup: {icon: <StorefrontIcon/>},
-        delivery: {icon: <DeliveryDiningIcon/>}
-    }
+  const navigate = useNavigate();
+  const fabIcon = {
+    pickup: {icon: <StorefrontIcon/>},
+    delivery: {icon: <DeliveryDiningIcon/>}
+  }
 
   return (
     <>

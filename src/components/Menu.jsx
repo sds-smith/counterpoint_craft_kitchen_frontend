@@ -3,12 +3,6 @@ import Grid from "@mui/material/Grid2";
 import MenuButton from "./MenuButton";
 import { MenuContext } from "../context/MenuContext";
 
-const image = {
-      url: '/src/assets/clay-banks-ZTtaJjiF_0M-unsplash.jpg',
-      title: 'Camera',
-      width: '30%',
-    }
-
 export default function Menu() {
     const { categories } = useContext(MenuContext);
 
@@ -19,7 +13,6 @@ export default function Menu() {
             { categories?.map(category => (
                 <MenuButton
                     key={category.id} 
-                    image={image}
                     category={category}
                 />
             ))}

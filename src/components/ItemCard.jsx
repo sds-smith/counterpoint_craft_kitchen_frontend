@@ -9,6 +9,7 @@ import defaultPhoto from '../lib/defaultPhoto'
 export default function ItemCard({item}) {
   const photoUrl = item.photo_url?.length ? item.photo_url : defaultPhoto[item.category];
   const navigate = useNavigate();
+  
   const handleClick = () => {
     const categoryPath = item.category.toLowerCase();
     const itemPath = item.name.toLowerCase().replaceAll(' ', '_');

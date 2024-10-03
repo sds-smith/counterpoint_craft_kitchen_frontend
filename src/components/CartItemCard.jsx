@@ -7,7 +7,6 @@ import defaultPhoto from '../lib/defaultPhoto'
 import { MenuContext } from '../context/MenuContext';
 
 export default function CartItemCard({id, quantity}) {
-    console.log({id})
     const { getMenuItemById } = useContext(MenuContext);
     const item = getMenuItemById(id)
     const photoUrl = item?.photo_url?.length ? item?.photo_url : defaultPhoto[item?.category];

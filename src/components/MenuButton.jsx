@@ -76,31 +76,31 @@ export default function MenuButton({category}) {
     const photoUrl = category.photo_url?.length ? category.photo_url : defaultPhoto[category.name]
 
   return (
-        <ImageButton
-          focusRipple
-          style={{
-            width: '30%',
-          }}
-          onClick={() => navigate(`/order/${category.name.toLowerCase()}${search}`)}
+    <ImageButton
+      focusRipple
+      style={{
+        width: '30%',
+      }}
+      onClick={() => navigate(`/order/${category.name.toLowerCase()}${search}`)}
+    >
+      <ImageSrc style={{ backgroundImage: `url(${photoUrl})` }} />
+      <ImageBackdrop className="MuiImageBackdrop-root" />
+      <Image>
+        <Typography
+          component="span"
+          variant="subtitle1"
+          color="inherit"
+          sx={(theme) => ({
+            position: 'relative',
+            p: 4,
+            pt: 2,
+            pb: `calc(${theme.spacing(1)} + 6px)`,
+          })}
         >
-          <ImageSrc style={{ backgroundImage: `url(${photoUrl})` }} />
-          <ImageBackdrop className="MuiImageBackdrop-root" />
-          <Image>
-            <Typography
-              component="span"
-              variant="subtitle1"
-              color="inherit"
-              sx={(theme) => ({
-                position: 'relative',
-                p: 4,
-                pt: 2,
-                pb: `calc(${theme.spacing(1)} + 6px)`,
-              })}
-            >
-              {category.name}
-              <ImageMarked className="MuiImageMarked-root" />
-            </Typography>
-          </Image>
-        </ImageButton>
+          {category.name}
+          <ImageMarked className="MuiImageMarked-root" />
+        </Typography>
+      </Image>
+    </ImageButton>
   );
 }

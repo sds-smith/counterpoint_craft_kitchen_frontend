@@ -1,5 +1,5 @@
 
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,6 +12,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
+import { useCartStore } from '../store/store';
 
 const StyledFab = styled(Fab)({
   position: 'absolute',
@@ -23,9 +24,8 @@ const StyledFab = styled(Fab)({
 });
 
 export default function Footer() {
+  const { method } = useCartStore();
     const navigate = useNavigate();
-    const [ searchParams ] = useSearchParams();
-    const method = searchParams.get('method');
     const fabIcon = {
         pickup: {icon: <StorefrontIcon/>},
         delivery: {icon: <DeliveryDiningIcon/>}

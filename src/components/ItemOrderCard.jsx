@@ -14,11 +14,13 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import defaultPhoto from '../lib/defaultPhoto'
 import { MenuContext } from '../context/MenuContext';
+import { useCartStore } from '../store/store';
 
 export default function ItemOrderCard() {
   const [ searchParams ] = useSearchParams();
   const itemId = searchParams.get('id');
   const { loadingMenu, getMenuItemById } = useContext(MenuContext);
+  const { addItemToCart } = useCartStore();
   const item = getMenuItemById(itemId);
 
   const [ quantity, setQuantity ] = useState(0);
@@ -27,6 +29,11 @@ export default function ItemOrderCard() {
 
   const incrementQuantity = () => setQuantity(curr => curr + 1);
   const decrementQuantity = () => setQuantity(curr => curr - 1);
+
+  const handleClickAdd = () => {
+    console.log({quantity, itemId})
+    addItemToCart(itemId, quantity, item.price)
+  }
 
   return (
     <>
@@ -75,7 +82,7 @@ export default function ItemOrderCard() {
                     </Grid>
                     <Grid size={{xs: 1}}></Grid>
                     <Grid size={{xs: 10}} >
-                        <Button variant="contained" fullWidth startIcon={<AddShoppingCartIcon />} >
+                        <Button variant="contained" fullWidth startIcon={<AddShoppingCartIcon />} onClick={handleClickAdd} >
                             Add to Cart
                         </Button>
                     </Grid>

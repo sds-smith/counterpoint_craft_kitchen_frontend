@@ -7,7 +7,7 @@ import CartDrawer from "../components/CartDrawer";
 
 export default function Navigation() {
   return (
-    <Grid container sx={{height: '100vh'}} >
+    <Grid container >
       <Header />
       <Outlet />
       <CartDrawer />

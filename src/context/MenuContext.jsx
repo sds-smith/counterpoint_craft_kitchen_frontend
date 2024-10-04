@@ -42,7 +42,7 @@ export const MenuProvider = ({children}) => {
     ? items?.reduce((acc, curr) => ({
         ...acc,
         [curr.category?.toLowerCase()]: {
-          ...acc[curr.category], 
+          ...acc[curr.category.toLowerCase()], 
           items: [...acc[curr.category.toLowerCase()].items, curr]
         }
       }), buildCategoriesObj(categories)) || {}

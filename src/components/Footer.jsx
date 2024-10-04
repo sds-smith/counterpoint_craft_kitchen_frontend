@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Fab from '@mui/material/Fab';
@@ -33,7 +32,6 @@ export default function Footer() {
 
   return (
     <>
-      <CssBaseline />
       <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
         <Toolbar>
           <IconButton color="inherit" aria-label="home button" onClick={()=>navigate('/')}>

@@ -9,7 +9,7 @@ export default function Category() {
   const { getMenuItemsByCategory } = useContext(MenuContext);
 
   const Category = getMenuItemsByCategory(category);
-
+console.log({Category})
   const name = Category?.name || '';
   const items = Category?.items || [];
 

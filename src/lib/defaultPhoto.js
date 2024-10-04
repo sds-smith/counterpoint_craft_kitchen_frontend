@@ -1,8 +1,10 @@
 
+const urlByEnv = (url) => import.meta.env.MODE === 'production' ? url.slice(4) : url;
+
 export default {
-    Appetizers: '/src/assets/wings.jpg',
-    Salads: '/src/assets/caesar.jpg',
-    Sandwiches: '/src/assets/burger.jpg',
-    Entrees: '/src/assets/pot-roast.jpg',
-    Kids: '/src/assets/grilled-cheese.jpg',
+    Appetizers: urlByEnv('/src/assets/wings.jpg'),
+    Salads: urlByEnv('/src/assets/caesar.jpg'),
+    Sandwiches: urlByEnv('/src/assets/burger.jpg'),
+    Entrees: urlByEnv('/src/assets/pot-roast.jpg'),
+    Kids: urlByEnv('/src/assets/grilled-cheese.jpg'),
 }

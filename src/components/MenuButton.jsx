@@ -73,7 +73,7 @@ const ImageMarked = styled('span')(({ theme }) => ({
 export default function MenuButton({category}) {
     const navigate = useNavigate();
     const photoUrl = category.photo_url?.length ? category.photo_url : defaultPhoto[category.name]
-
+console.log('[MenuButton]',{photoUrl})
   return (
     <ImageButton
       focusRipple

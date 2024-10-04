@@ -16,10 +16,10 @@ Current frontend tech stack includes:
   * React
   * React-router-dom
   * Material-UI
+  * Zustand state management
 
 Future iterations will include:
   * Paypal SDK for payment processing
   * Doordash SDK for delivery processing
-  * Zustand for state management
 
 Stay tuned for updates . . .

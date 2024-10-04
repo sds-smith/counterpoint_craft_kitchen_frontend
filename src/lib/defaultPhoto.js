@@ -1,5 +1,5 @@
 
-const urlByEnv = (url) => import.meta.env.MODE === 'production' ? url.slice(4) : url;
+const urlByEnv = (url) => import.meta.env.MODE === 'production' ? `${url.slice(0,4)}${url.slice(11)}` : url;
 
 export default {
     Appetizers: urlByEnv('/src/assets/wings.jpg'),

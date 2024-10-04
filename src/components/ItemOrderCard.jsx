@@ -40,7 +40,7 @@ export default function ItemOrderCard() {
       { loadingMenu
         ? <h1>Loading . . .</h1>
         : (
-              <Card sx={{margin: '10px auto'}} >
+              <Card sx={{margin: '10px auto 40px auto'}} >
                 <CardMedia
                   component="img"
                   alt={item?.name}

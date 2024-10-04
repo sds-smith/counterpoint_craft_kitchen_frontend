@@ -23,7 +23,7 @@ export const MenuProvider = ({children}) => {
   useEffect(() => {
     fetch(`${API_BASE_URL}/categories`)
       .then(response => response.json()
-        .then(categories => setCategories(categories.filter(category => !categories.includes(c => c.name === category.name)))))
+        .then(categories => setCategories(categories.filter(category => !categories.some(c => c.name === category.name)))))
         .catch(jsonErr => console.log({jsonErr}))
       .catch(err => console.log({err}))
       .finally(() => setCategoriesLoading(false))

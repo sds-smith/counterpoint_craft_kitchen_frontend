@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import Grid from "@mui/material/Grid2";
+import PageWrapper from "./PageWrapper";
 import ItemCard from "./ItemCard"
 import { MenuContext } from "../context/MenuContext"
 
@@ -9,12 +10,12 @@ export default function Category() {
   const { getMenuItemsByCategory } = useContext(MenuContext);
 
   const Category = getMenuItemsByCategory(category);
-console.log({Category})
+
   const name = Category?.name || '';
   const items = Category?.items || [];
 
   return (
-    <Grid container size={{xs: 12}} spacing={1} sx={{margin: '10px'}}>
+    <PageWrapper spacing={1} >
       { Category
         ? <>
             <Grid size={{xs: 12}}>
@@ -30,6 +31,6 @@ console.log({Category})
           </>
         : <h1>Loading</h1>
       }
-    </Grid >
+    </PageWrapper >
   )
 }

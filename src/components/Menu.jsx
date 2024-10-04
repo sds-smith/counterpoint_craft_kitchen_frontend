@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Grid from "@mui/material/Grid2";
+import PageWrapper from './PageWrapper';
 import MenuButton from "./MenuButton";
 import { MenuContext } from "../context/MenuContext";
 
@@ -7,7 +8,7 @@ export default function Menu() {
     const { categories } = useContext(MenuContext);
 
     return (
-        <Grid container size={{xs: 12}} spacing={3} sx={{paddingBottom: '100px'}}>
+        <PageWrapper spacing={3} style={{paddingBottom: '100px'}}>
             { !categories
               ? <h1>Loading . . .</h1>
               : <>
@@ -22,6 +23,6 @@ export default function Menu() {
                     </Grid>
                 </>
             }
-        </Grid>
+        </PageWrapper>
     )
 }

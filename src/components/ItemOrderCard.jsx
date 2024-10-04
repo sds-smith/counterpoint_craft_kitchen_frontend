@@ -23,12 +23,12 @@ export default function ItemOrderCard() {
   const { addItemToCart } = useCartStore();
   const item = getMenuItemById(itemId);
 
-  const [ quantity, setQuantity ] = useState(0);
+  const [ quantity, setQuantity ] = useState(1);
 
   const photoUrl = item?.photo_url?.length ? item?.photo_url : defaultPhoto[item?.category] || '/src/assets/grilled-cheese.jpg';
 
-  const incrementQuantity = () => setQuantity(curr => curr + 1);
-  const decrementQuantity = () => setQuantity(curr => curr - 1);
+  const incrementQuantity = () => setQuantity(curr => curr < 8 ? curr + 1 : curr);
+  const decrementQuantity = () => setQuantity(curr => curr > 1 ? curr - 1 : curr);
 
   const handleClickAdd = () => {
     console.log({quantity, itemId})
@@ -40,8 +40,7 @@ export default function ItemOrderCard() {
       { loadingMenu
         ? <h1>Loading . . .</h1>
         : (
-            <Grid container size={{xs: 12}} spacing={1} sx={{margin: '10px'}}>
-              <Card >
+              <Card sx={{margin: '10px auto'}} >
                 <CardMedia
                   component="img"
                   alt={item?.name}
@@ -90,7 +89,6 @@ export default function ItemOrderCard() {
                   </Grid>
                 </CardActions>
               </Card>
-            </Grid>
         )
       }
     </>

@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { useCartStore } from '../store/store';
 import CartItemCard from './CartItemCard';
 
@@ -17,7 +18,8 @@ export default function CartDrawer() {
       cartItems, 
       cartTotal, 
       method, 
-      updateMethod 
+      updateMethod,
+      clearCart
     } = useCartStore();
 
     const switchMethod = {
@@ -34,23 +36,26 @@ export default function CartDrawer() {
       open={cartIsOpen} 
       onClose={toggleCartIsOpen} 
       anchor='bottom'
-      sx={{zIndex: 2, marginBottom: '50px'}}
+      sx={{zIndex: 2}}
     >
-      <Box sx={{height: '70vh'}}>
+      <Box sx={{display: 'flex', flexDirection: 'column', height: '70vh', paddingBottom: '100px'}}>
         <Typography variant='h4' textAlign='center'>
           My {capitalize(method)} Order
         </Typography>
-        <Button fullWidth variant="outlined" startIcon={switchMethod[method]?.startIcon} onClick={handleSwitchMethod}>
-          {`Switch to ${switchMethod[method]?.to}`}
-        </Button>
+        { method && 
+          <Button sx={{width: '80%', margin: '20px auto'}} variant="outlined" startIcon={switchMethod[method]?.startIcon} onClick={handleSwitchMethod}>
+            {`Switch to ${switchMethod[method]?.to}`}
+          </Button>
+        }
         {Object.entries(cartItems).map(([id, quantity]) => (
           <CartItemCard 
             key={id} 
             id={id} 
             quantity={quantity} 
           />
-      ))}
+        ))}
         <Typography variant='h5' >{`Subtotal: $${cartTotal}`}</Typography>
+        <Button sx={{width: '80%', margin: '20px auto'}} variant="contained" startIcon={<RemoveShoppingCartIcon />} onClick={clearCart} >Clear Cart</Button>
       </Box>
     </Drawer>
   );

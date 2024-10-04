@@ -35,7 +35,7 @@ export const MenuProvider = ({children}) => {
       .catch(err => console.log({err}))
       .finally(() => setCategoriesLoading(false))
   },[buildCategoriesObj])
-  useEffect(()=>console.log('[filtered results]', {categories}),[categories])
+
   useEffect(() => {
     fetch(`${API_BASE_URL}/items`)
       .then(response => response.json()

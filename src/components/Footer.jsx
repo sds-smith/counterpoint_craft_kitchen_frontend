@@ -23,18 +23,23 @@ const StyledFab = styled(Fab)({
 });
 
 export default function Footer() {
-  const { method, toggleCartIsOpen } = useCartStore();
+  const { method, toggleCartIsOpen, cartIsOpen } = useCartStore();
   const navigate = useNavigate();
   const fabIcon = {
     pickup: {icon: <StorefrontIcon/>},
     delivery: {icon: <DeliveryDiningIcon/>}
   }
 
+  const handleClickHome = () => {
+    if (cartIsOpen) toggleCartIsOpen()
+    navigate('/')
+  }
+
   return (
     <>
       <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0, zIndex: 3 }}>
         <Toolbar>
-          <IconButton color="inherit" aria-label="home button" onClick={()=>navigate('/')}>
+          <IconButton color="inherit" aria-label="home button" onClick={handleClickHome}>
             <HomeIcon />
           </IconButton>
           <StyledFab color="secondary" aria-label="add" onClick={toggleCartIsOpen}>

@@ -40,3 +40,23 @@
   background-repeat: no-repeat;
   opacity: 0.5;
 }
+
+.menu_button_img_Appetizers {
+  background-image: url('/src/assets/wings.jpg');
+}
+
+.menu_button_img_Salads {
+  background-image: url('/src/assets/caesar.jpg');
+}
+
+.menu_button_img_Sandwiches {
+  background-image: url('/src/assets/burger.jpg');
+}
+
+.menu_button_img_Entrees {
+  background-image: url('/src/assets/pot-roast.jpg');
+}
+
+.menu_button_img_Kids {
+  background-image: url('/src/assets/grilled-cheese.jpg');
+}

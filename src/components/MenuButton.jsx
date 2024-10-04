@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-import defaultPhoto from '../lib/defaultPhoto'
+// import defaultPhoto from '../lib/defaultPhoto'
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: 'relative',
@@ -73,7 +73,7 @@ const ImageMarked = styled('span')(({ theme }) => ({
 export default function MenuButton({category}) {
     const navigate = useNavigate();
     // const photoUrl = category.photo_url?.length ? category.photo_url : defaultPhoto[category.name]
-    const backgroundImage = category.photo_url?.length ? `url(${category.photo_url})` : defaultPhoto[category.name];
+    // const backgroundImage = category.photo_url?.length ? `url(${category.photo_url})` : defaultPhoto[category.name];
 
     return (
     <ImageButton
@@ -83,7 +83,7 @@ export default function MenuButton({category}) {
       }}
       onClick={() => navigate(`/order/${category.name.toLowerCase()}`)}
     >
-      <ImageSrc style={{ backgroundImage }} />
+      <ImageSrc className={`menu_button_img_${category.name}`} /*style={{ backgroundImage }}*/ />
       <ImageBackdrop className="MuiImageBackdrop-root" />
       <Image>
         <Typography

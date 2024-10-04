@@ -30,10 +30,7 @@ export default function ItemOrderCard() {
   const incrementQuantity = () => setQuantity(curr => curr < 8 ? curr + 1 : curr);
   const decrementQuantity = () => setQuantity(curr => curr > 1 ? curr - 1 : curr);
 
-  const handleClickAdd = () => {
-    console.log({quantity, itemId})
-    addItemToCart(itemId, quantity, item.price)
-  }
+  const handleClickAdd = () => addItemToCart(itemId, quantity, item.price)
 
   return (
     <>

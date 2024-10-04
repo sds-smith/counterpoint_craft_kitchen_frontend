@@ -1,4 +1,5 @@
 
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
@@ -12,6 +13,8 @@ import CartItemCard from './CartItemCard';
 const capitalize = (string) => string ? string[0].toUpperCase() + string.slice(1) : ''
 
 export default function CartDrawer() {
+  const navigate = useNavigate();
+
     const { 
       cartIsOpen, 
       toggleCartIsOpen, 
@@ -29,6 +32,12 @@ export default function CartDrawer() {
 
     const handleSwitchMethod = () => {
       updateMethod(switchMethod[method].update)
+    }
+
+    const handleClear = () => {
+      clearCart();
+      toggleCartIsOpen();
+      navigate('/');
     }
 
   return (
@@ -55,7 +64,7 @@ export default function CartDrawer() {
           />
         ))}
         <Typography variant='h5' >{`Subtotal: $${cartTotal}`}</Typography>
-        <Button sx={{width: '80%', margin: '20px auto'}} variant="contained" startIcon={<RemoveShoppingCartIcon />} onClick={clearCart} >Clear Cart</Button>
+        <Button sx={{width: '80%', margin: '20px auto'}} variant="contained" startIcon={<RemoveShoppingCartIcon />} onClick={handleClear} >Clear Cart</Button>
       </Box>
     </Drawer>
   );

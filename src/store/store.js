@@ -5,10 +5,12 @@ export const useCartStore = create(
   persist(
     (set, get) => ({
       method: null,
-      updateMethod: (newMethod) => set({ method: newMethod }),
       cartItems: {},
       cartCount: 0,
       cartTotal: 0,
+      cartIsOpen: false,
+      
+      updateMethod: (newMethod) => set({ method: newMethod }),
       addItemToCart: (itemId, quantity, price) => {
         set({ 
           cartItems: { 
@@ -48,7 +50,6 @@ export const useCartStore = create(
           method: null
         })
       },
-      cartIsOpen: false,
       toggleCartIsOpen: () => set({ cartIsOpen: !get().cartIsOpen})
     }),
     {

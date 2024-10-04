@@ -13,6 +13,7 @@ import './App.css'
 
 function App() {
   const { menuLoading } = useContext(MenuContext);
+  
   return (
     <ThemeProvider theme={theme} >
       { menuLoading

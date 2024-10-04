@@ -1,5 +1,5 @@
 
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
@@ -72,7 +72,6 @@ const ImageMarked = styled('span')(({ theme }) => ({
 
 export default function MenuButton({category}) {
     const navigate = useNavigate();
-    const { search } = useLocation();
     const photoUrl = category.photo_url?.length ? category.photo_url : defaultPhoto[category.name]
 
   return (
@@ -81,7 +80,7 @@ export default function MenuButton({category}) {
       style={{
         width: '30%',
       }}
-      onClick={() => navigate(`/order/${category.name.toLowerCase()}${search}`)}
+      onClick={() => navigate(`/order/${category.name.toLowerCase()}`)}
     >
       <ImageSrc style={{ backgroundImage: `url(${photoUrl})` }} />
       <ImageBackdrop className="MuiImageBackdrop-root" />

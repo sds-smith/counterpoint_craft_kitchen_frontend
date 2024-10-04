@@ -8,15 +8,20 @@ export default function Menu() {
 
     return (
         <Grid container size={{xs: 12}} spacing={3} sx={{paddingBottom: '100px'}}>
-            <h1>Menu</h1>
-            <Grid container size={{xs: 12}} sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-            { categories?.map(category => (
-                <MenuButton
-                    key={category.id} 
-                    category={category}
-                />
-            ))}
-            </Grid>
+            { !categories
+              ? <h1>Loading . . .</h1>
+              : <>
+                    <h1>Menu</h1>
+                    <Grid container size={{xs: 12}} sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+                    { categories?.map(category => (
+                        <MenuButton
+                            key={category.id} 
+                            category={category}
+                        />
+                    ))}
+                    </Grid>
+                </>
+            }
         </Grid>
     )
 }

@@ -8,16 +8,16 @@ import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import { useCartStore } from '../store/store';
 import CartItemCard from './CartItemCard';
 
-const capitalize = (string) => string[0].toUpperCase() + string.slice(1)
+const capitalize = (string) => string ? string[0].toUpperCase() + string.slice(1) : ''
 
 export default function CartDrawer() {
     const { 
-        cartIsOpen, 
-        toggleCartIsOpen, 
-        cartItems, 
-        cartTotal, 
-        method, 
-        updateMethod 
+      cartIsOpen, 
+      toggleCartIsOpen, 
+      cartItems, 
+      cartTotal, 
+      method, 
+      updateMethod 
     } = useCartStore();
 
     const switchMethod = {
@@ -26,7 +26,7 @@ export default function CartDrawer() {
     }
 
     const handleSwitchMethod = () => {
-        updateMethod(switchMethod[method].update)
+      updateMethod(switchMethod[method].update)
     }
 
   return (

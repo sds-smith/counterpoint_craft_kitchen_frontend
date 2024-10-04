@@ -23,7 +23,7 @@ const StyledFab = styled(Fab)({
 });
 
 export default function Footer() {
-  const { method } = useCartStore();
+  const { method, toggleCartIsOpen } = useCartStore();
   const navigate = useNavigate();
   const fabIcon = {
     pickup: {icon: <StorefrontIcon/>},
@@ -32,12 +32,12 @@ export default function Footer() {
 
   return (
     <>
-      <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
+      <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0, zIndex: 3 }}>
         <Toolbar>
           <IconButton color="inherit" aria-label="home button" onClick={()=>navigate('/')}>
             <HomeIcon />
           </IconButton>
-          <StyledFab color="secondary" aria-label="add">
+          <StyledFab color="secondary" aria-label="add" onClick={toggleCartIsOpen}>
             {fabIcon[method]?.icon || null}
           </StyledFab>
           <Box sx={{ flexGrow: 1 }} />

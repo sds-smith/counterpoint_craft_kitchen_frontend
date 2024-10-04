@@ -34,6 +34,7 @@ export default function CartDrawer() {
       open={cartIsOpen} 
       onClose={toggleCartIsOpen} 
       anchor='bottom'
+      sx={{zIndex: 2, marginBottom: '50px'}}
     >
       <Box sx={{height: '70vh'}}>
         <Typography variant='h4' textAlign='center'>

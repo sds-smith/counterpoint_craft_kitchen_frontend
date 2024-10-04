@@ -8,7 +8,7 @@ import Cart from './CartButton';
 export default function Header() {
 
   return (
-      <AppBar position="fixed" color="primary" sx={{ top: 0, bottom: 'auto' }}>
+      <AppBar position="fixed" color="primary" sx={{ top: 0, bottom: 'auto', zIndex: 3 }}>
         <Toolbar>
           <HeaderMenu />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

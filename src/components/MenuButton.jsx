@@ -72,9 +72,10 @@ const ImageMarked = styled('span')(({ theme }) => ({
 
 export default function MenuButton({category}) {
     const navigate = useNavigate();
-    const photoUrl = category.photo_url?.length ? category.photo_url : defaultPhoto[category.name]
-console.log('[MenuButton]',{photoUrl})
-  return (
+    // const photoUrl = category.photo_url?.length ? category.photo_url : defaultPhoto[category.name]
+    const backgroundImage = category.photo_url?.length ? `url(${category.photo_url})` : defaultPhoto[category.name];
+
+    return (
     <ImageButton
       focusRipple
       style={{
@@ -82,7 +83,7 @@ console.log('[MenuButton]',{photoUrl})
       }}
       onClick={() => navigate(`/order/${category.name.toLowerCase()}`)}
     >
-      <ImageSrc style={{ backgroundImage: `url(${photoUrl})` }} />
+      <ImageSrc style={{ backgroundImage }} />
       <ImageBackdrop className="MuiImageBackdrop-root" />
       <Image>
         <Typography

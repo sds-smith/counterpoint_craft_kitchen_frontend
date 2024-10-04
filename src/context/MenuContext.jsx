@@ -23,12 +23,19 @@ export const MenuProvider = ({children}) => {
   useEffect(() => {
     fetch(`${API_BASE_URL}/categories`)
       .then(response => response.json()
-        .then(categories => setCategories(categories.filter(category => !categories.some(c => c.name === category.name)))))
+        .then(categories => {
+          const uniqueCategories = [];
+          categories.forEach(category => {
+            if (!uniqueCategories.some(c => c.name === category.name)) uniqueCategories.push(category)
+          })
+          setCategories(uniqueCategories)
+
+        }))
         .catch(jsonErr => console.log({jsonErr}))
       .catch(err => console.log({err}))
       .finally(() => setCategoriesLoading(false))
   },[buildCategoriesObj])
-  
+  useEffect(()=>console.log('[filtered results]', {categories}),[categories])
   useEffect(() => {
     fetch(`${API_BASE_URL}/items`)
       .then(response => response.json()

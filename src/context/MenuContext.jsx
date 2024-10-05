@@ -1,75 +1,41 @@
-import { createContext, useState, useEffect, useCallback, useMemo } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+const menuDataInitialState = {
+  menuItemsByCategory: {}, 
+  menuItemsById: {}
+}
 
 export const MenuContext = createContext();
 
 export const MenuProvider = ({children}) => {
-  const [categories, setCategories] = useState(null)
-  const [categoriesLoading, setCategoriesLoading] = useState(true)
-  const [items, setItems] = useState(null)
-  const [itemsLoading, setItemsLoading] = useState(true)
+  const [menuData, setMenuData] = useState(menuDataInitialState)
+  const [loadingMenu, setLoadingMenu] = useState(true)
+  const [menuError, setMenuError] = useState(null);
 
-  const buildCategoriesObj = useCallback((categoriesArr) => 
-    categoriesArr.reduce((acc, curr) => ({
-      ...acc,
-      [curr.name.toLowerCase()]: {
-        ...curr,
-        items: []
-      }
-    }), {}), 
-  [])
-  
-  useEffect(() => {
-    fetch(`${API_BASE_URL}/categories`)
-      .then(response => response.json()
-        .then(categories => {
-          const uniqueCategories = [];
-          categories.forEach(category => {
-            if (!uniqueCategories.some(c => c.name === category.name)) uniqueCategories.push(category)
-          })
-          setCategories(uniqueCategories)
-
-        }))
-        .catch(jsonErr => console.log({jsonErr}))
-      .catch(err => console.log({err}))
-      .finally(() => setCategoriesLoading(false))
-  },[buildCategoriesObj])
+  const { menuItemsByCategory, menuItemsById } = menuData;
+  const categories = Object.values(menuItemsByCategory);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/items`)
+    fetch(`${API_BASE_URL}/menu`)
       .then(response => response.json()
-        .then(items => setItems(items)))
-        .catch(jsonErr => console.log({jsonErr}))
-      .catch(err => console.log({err}))
-      .finally(() => setItemsLoading(false))
+        .then((data) => setMenuData(data))
+        .catch(({message}) => setMenuError(message)))
+      .catch(({message}) => setMenuError(message))
+      .finally(() => setLoadingMenu(false))
   },[])
 
-  const menuItemsByCategory = useMemo(() => categories 
-    ? items?.reduce((acc, curr) => ({
-        ...acc,
-        [curr.category?.toLowerCase()]: {
-          ...acc[curr.category.toLowerCase()], 
-          items: [...acc[curr.category.toLowerCase()].items, curr]
-        }
-      }), buildCategoriesObj(categories)) || {}
-    : {}, 
-  [buildCategoriesObj, categories, items])
+  useEffect(() => console.log({menuData}),[menuData])
+  useEffect(() => console.log({loadingMenu}),[loadingMenu])
 
-  const menuItemsById = useMemo(() => items?.reduce((acc, curr) => ({
-    ...acc,
-    [curr.id]: curr
-  }), {}) || {}, [items])
+  const getMenuItemsByCategory = useCallback((category) => menuItemsByCategory[category], [menuItemsByCategory]);
+  const getMenuItemById = useCallback((id) => menuItemsById[id], [menuItemsById]);
 
-  const getMenuItemsByCategory = (category) => menuItemsByCategory[category];
-  const getMenuItemById = (id) => menuItemsById[id];
-
-  const loadingMenu = categoriesLoading || itemsLoading;
-    
   const value = {
     loadingMenu,
-    categories, items,
-    menuItemsByCategory,
+    menuError,
+    categories,
     getMenuItemsByCategory,
     getMenuItemById
   };

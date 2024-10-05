@@ -2,7 +2,7 @@
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useCartStore } from '../store/store';
+import { useCartStore } from '../store/cartStore';
 
 export default function CartButton() {
   const { cartCount, toggleCartIsOpen } = useCartStore();

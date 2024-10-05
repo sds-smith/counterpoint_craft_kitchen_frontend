@@ -11,7 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
-import { useCartStore } from '../store/store';
+import { useCartStore } from '../store/cartStore';
 
 const StyledFab = styled(Fab)({
   position: 'absolute',

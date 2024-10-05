@@ -5,7 +5,7 @@ import Button from "@mui/material/Button"
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import PageWrapper from './PageWrapper';
-import { useCartStore } from "../store/store";
+import { useCartStore } from "../store/cartStore";
 
 export default function Landing() {
     const { updateMethod } = useCartStore();

@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
-import { useCartStore } from '../store/store';
+import { useCartStore } from '../store/cartStore';
 import CartItemCard from './CartItemCard';
 
 const capitalize = (string) => string ? string[0].toUpperCase() + string.slice(1) : ''

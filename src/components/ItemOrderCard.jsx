@@ -14,7 +14,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import defaultPhoto from '../lib/defaultPhoto'
 import { MenuContext } from '../context/MenuContext';
-import { useCartStore } from '../store/store';
+import { useCartStore } from '../store/cartStore';
 
 export default function ItemOrderCard() {
   const [ searchParams ] = useSearchParams();

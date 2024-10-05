@@ -13,7 +13,7 @@ import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import defaultPhoto from '../lib/defaultPhoto'
 import { MenuContext } from '../context/MenuContext';
-import { useCartStore } from '../store/store';
+import { useCartStore } from '../store/cartStore';
 
 export default function CartItemCard({id, quantity}) {
     const { getMenuItemById } = useContext(MenuContext);

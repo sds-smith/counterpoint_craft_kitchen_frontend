@@ -26,9 +26,6 @@ export const MenuProvider = ({children}) => {
       .finally(() => setLoadingMenu(false))
   },[])
 
-  useEffect(() => console.log({menuData}),[menuData])
-  useEffect(() => console.log({loadingMenu}),[loadingMenu])
-
   const getMenuItemsByCategory = useCallback((category) => menuItemsByCategory[category], [menuItemsByCategory]);
   const getMenuItemById = useCallback((id) => menuItemsById[id], [menuItemsById]);
 

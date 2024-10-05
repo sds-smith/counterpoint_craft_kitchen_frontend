@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import PaymentIcon from '@mui/icons-material/Payment';
 import { useCartStore } from '../store/cartStore';
 import CartItemCard from './CartItemCard';
 
@@ -22,7 +23,8 @@ export default function CartDrawer() {
       cartTotal, 
       method, 
       updateMethod,
-      clearCart
+      clearCart,
+      handleOpenPayment
     } = useCartStore();
 
     const switchMethod = {
@@ -38,6 +40,11 @@ export default function CartDrawer() {
       clearCart();
       toggleCartIsOpen();
       navigate('/');
+    }
+
+    const handleOrder = () => {
+      console.log('create order')
+      handleOpenPayment();
     }
 
   return (
@@ -65,6 +72,7 @@ export default function CartDrawer() {
         ))}
         <Typography variant='h5' >{`Subtotal: $${cartTotal}`}</Typography>
         <Button sx={{width: '80%', margin: '20px auto'}} variant="contained" startIcon={<RemoveShoppingCartIcon />} onClick={handleClear} >Clear Cart</Button>
+        <Button sx={{width: '80%', margin: '20px auto'}} variant="contained" startIcon={<PaymentIcon />} onClick={handleOrder} >Place Order</Button>
       </Box>
     </Drawer>
   );

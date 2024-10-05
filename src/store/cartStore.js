@@ -9,6 +9,8 @@ export const useCartStore = create(
       cartCount: 0,
       cartTotal: 0,
       cartIsOpen: false,
+      paymentModalOpen: false,
+
       
       updateMethod: (newMethod) => set({ method: newMethod }),
       addItemToCart: (itemId, quantity, price) => {
@@ -50,7 +52,9 @@ export const useCartStore = create(
           method: null
         })
       },
-      toggleCartIsOpen: () => set({ cartIsOpen: !get().cartIsOpen})
+      toggleCartIsOpen: () => set({ cartIsOpen: !get().cartIsOpen}),
+      handleOpenPayment: () => set({ paymentModalOpen: true}),
+      handleClosePayment: () => set({ paymentModalOpen: false}),
     }),
     {
       name: 'cart-storage', 

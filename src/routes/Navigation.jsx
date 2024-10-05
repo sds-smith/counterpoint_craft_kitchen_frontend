@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid2";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CartDrawer from "../components/CartDrawer";
+import PaypalModal from "../components/PaypalModal";
 
 export default function Navigation() {
   return (
@@ -12,6 +13,7 @@ export default function Navigation() {
       <Outlet />
       <CartDrawer />
       <Footer />
+      <PaypalModal />
     </Grid>
   )
 }

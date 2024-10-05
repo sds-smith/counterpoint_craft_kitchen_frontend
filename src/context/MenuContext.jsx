@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useCallback } from "react";
+// import { createOrder } from "../utils/paypal";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const AUTH_BASE_URL = import.meta.env.VITE_AUTH_BASE_URL;
 
 const menuDataInitialState = {
   menuItemsByCategory: {}, 
@@ -27,12 +27,10 @@ export const MenuProvider = ({children}) => {
       .finally(() => setLoadingMenu(false))
   },[])
 
-  useEffect(() => {
-    fetch(`${AUTH_BASE_URL}/paypal`)
-      .then(res => res.json()
-        .then(resp=> console.log({resp}))
-    )
-  },[])
+  // useEffect(() => {
+  //   createOrder()
+  //     .then(orderResponse=> console.log('[MenuContext]', {orderResponse}))
+  // },[])
 
   const getMenuItemsByCategory = useCallback((category) => menuItemsByCategory[category], [menuItemsByCategory]);
   const getMenuItemById = useCallback((id) => menuItemsById[id], [menuItemsById]);

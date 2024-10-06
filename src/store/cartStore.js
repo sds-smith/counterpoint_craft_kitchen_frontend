@@ -19,7 +19,7 @@ export const useCartStore = create(
             [itemId]: (get().cartItems[itemId] || 0) + quantity
           },
           cartCount: get().cartCount + quantity,
-          cartTotal: get().cartTotal + (quantity * price)
+          cartTotal: (get().cartTotal + (quantity * price)).toFixed(2)
         });
       },
       removeItemFromCart: (itemId, quantity, price) => {
@@ -28,7 +28,7 @@ export const useCartStore = create(
         set({
           cartItems: cart,
           cartCount: get().cartCount - quantity,
-          cartTotal: get().cartTotal - (quantity * price)
+          cartTotal: (get().cartTotal - (quantity * price)).toFixed(2)
         })
       },
       editItemQuantity: (itemId, quantity, price) => {
@@ -40,7 +40,7 @@ export const useCartStore = create(
             [itemId]: quantity
           },
           cartCount: get().cartCount - originalItemQty + quantity,
-          cartTotal: get().cartTotal - originalItemSubtotal + (quantity * price)
+          cartTotal: (get().cartTotal - originalItemSubtotal + (quantity * price)).toFixed(2)
         });
       },
       clearCart: () => {

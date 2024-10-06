@@ -24,7 +24,12 @@ The menu data is fetched by the Express server from the API, processed and retur
 Future iterations will include:
   * Doordash SDK for delivery options
 
-![Pay Screen](https://github.com/sds-smith/restaurant_menu/blob/main/public/screenshots/55663C0C-9B58-4D15-B9BD-3DBB159C0C96_1_201_a.jpeg)
+<!-- ![Pay Screen](https://github.com/sds-smith/restaurant_menu/blob/main/public/screenshots/55663C0C-9B58-4D15-B9BD-3DBB159C0C96_1_201_a.jpeg) -->
+
+<p align="center">
+  <img src="https://github.com/sds-smith/restaurant_menu/blob/main/public/screenshots/55663C0C-9B58-4D15-B9BD-3DBB159C0C96_1_201_a.jpeg" width="350" title="Pay Screen">
+  <!-- <img src="your_relative_path_here_number_2_large_name" width="350" alt="accessibility text"> -->
+</p>
 
 
 Stay tuned for updates . . .

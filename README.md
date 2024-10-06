@@ -8,8 +8,6 @@ Still very much in its infancy stage, this eCommerce React application is one pa
   * **Frontend**: React
   * **Backend**: Node/Express
   * **API/ Data management layer**: Ruby on Rails
-    * An API namespace which returns JSON menu data to populate the frontend app,
-    * An auth protected browser-based CMS tool for managing that menu data
 
   [View the Express server code here.](https://github.com/sds-smith/ecomm_server)  
   [View the Rails server code here.](https://github.com/sds-smith/restaurant_menu_cms)

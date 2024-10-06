@@ -1,4 +1,4 @@
-
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -10,42 +10,47 @@ import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import PaymentIcon from '@mui/icons-material/Payment';
 import { useCartStore } from '../store/cartStore';
 import CartItemCard from './CartItemCard';
+import PaypalCheckout from './PaypalCheckout';
 
 const capitalize = (string) => string ? string[0].toUpperCase() + string.slice(1) : ''
 
 export default function CartDrawer() {
   const navigate = useNavigate();
 
-    const { 
-      cartIsOpen, 
-      toggleCartIsOpen, 
-      cartItems, 
-      cartTotal, 
-      method, 
-      updateMethod,
-      clearCart,
-      handleOpenPayment
-    } = useCartStore();
+  const { 
+    cartIsOpen, 
+    toggleCartIsOpen, 
+    cartItems, 
+    cartTotal, 
+    method, 
+    updateMethod,
+    clearCart,
+  } = useCartStore();
 
-    const switchMethod = {
-        pickup: {startIcon: <DeliveryDiningIcon />, to: 'Delivery', update: 'delivery'},
-        delivery: {startIcon: <StorefrontIcon />, to: 'Pick Up', update: 'pickup'}
-    }
+  const [ showCheckout, setShowCheckout ] = useState(false);
+  const toggleShowCheckout = () => setShowCheckout(show => !show);
 
-    const handleSwitchMethod = () => {
-      updateMethod(switchMethod[method].update)
-    }
+  const checkoutButtonText = showCheckout ? 'Return' : 'Check Out';
 
-    const handleClear = () => {
-      clearCart();
-      toggleCartIsOpen();
-      navigate('/');
-    }
+  const switchMethod = {
+    pickup: {startIcon: <DeliveryDiningIcon />, to: 'Delivery', update: 'delivery'},
+    delivery: {startIcon: <StorefrontIcon />, to: 'Pick Up', update: 'pickup'}
+  }
 
-    const handleOrder = () => {
-      console.log('create order')
-      handleOpenPayment();
-    }
+  const handleSwitchMethod = () => {
+    updateMethod(switchMethod[method].update)
+  }
+
+  const handleClear = () => {
+    clearCart();
+    toggleCartIsOpen();
+    navigate('/');
+  }
+
+  useEffect(() => {
+    if (showCheckout) toggleShowCheckout()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartIsOpen])
 
   return (
     <Drawer 
@@ -71,8 +76,25 @@ export default function CartDrawer() {
           />
         ))}
         <Typography variant='h5' >{`Subtotal: $${cartTotal}`}</Typography>
-        <Button sx={{width: '80%', margin: '20px auto'}} variant="contained" startIcon={<RemoveShoppingCartIcon />} onClick={handleClear} >Clear Cart</Button>
-        <Button sx={{width: '80%', margin: '20px auto'}} variant="contained" startIcon={<PaymentIcon />} onClick={handleOrder} >Place Order</Button>
+        <Button 
+          sx={{width: '80%', margin: '20px auto'}} 
+          variant="contained" 
+          startIcon={<RemoveShoppingCartIcon />} 
+          onClick={handleClear} 
+          disabled={!cartTotal || showCheckout} 
+        >
+          Clear Cart
+        </Button>
+        <Button 
+          sx={{width: '80%', margin: '20px auto'}} 
+          variant="contained" 
+          startIcon={<PaymentIcon />} 
+          onClick={toggleShowCheckout} 
+          disabled={!cartTotal} 
+        >
+          {checkoutButtonText}
+        </Button>
+        { showCheckout && <PaypalCheckout />}
       </Box>
     </Drawer>
   );

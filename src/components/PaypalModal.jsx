@@ -1,17 +1,20 @@
 
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
 import { useCartStore } from '../store/cartStore';
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { usePaypal } from "../hooks/usePaypal";
+import { Typography } from '@mui/material';
 
 // Renders errors or successfull transactions on the screen.
 function Message({ content }) {
-  return <p>{content}</p>;
+  return <Typography variant='body2' textAlign={'center'} sx={{mt: 4}}>{content}</Typography>;
 }
 
 const style = {
   position: 'absolute',
+  display: 'flex',
+  flexDirection: 'column',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -23,36 +26,34 @@ const style = {
 };
 
 export default function PaypalModal() {
-  const { paymentModalOpen, handleClosePayment } = useCartStore();
-  const { createOrder, onApprove, message } = usePaypal();
+  const navigate = useNavigate();
+  const { paymentMessage, clearPaymentMessage, clearCart, toggleCartIsOpen, method } = useCartStore();
 
-  const initialOptions = {
-    "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
-    "enable-funding": "venmo",
-    "data-sdk-integration-source": "integrationbuilder_sc",
-  };
+  const message = {
+    pickup: "Your order will be ready for pickup in 20 minutes.",
+    delivery: "We will have your order out to you as soon as possible"
+  }
+
+  const handleClose = () => {
+    clearPaymentMessage();
+    clearCart();
+    toggleCartIsOpen();
+    navigate('/');
+  }
 
   return (
     <div >
       <Modal
-        open={paymentModalOpen}
-        onClose={handleClosePayment}
+        open={paymentMessage.startsWith('Transaction')}
+        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-            <PayPalScriptProvider options={initialOptions}>
-              <PayPalButtons
-                style={{
-                  shape: "rect",
-                   /*color:'blue', /*change the default color of the buttons*/
-                  layout: "vertical", //default value. Can be changed to horizontal
-                }}
-                createOrder={createOrder}
-                onApprove={onApprove}
-              />
-            </PayPalScriptProvider>
-            <Message content={message} />
+          <Typography variant='h5' textAlign={'center'}>Thank you for your Order</Typography>
+          <Typography variant='body1' textAlign={'center'}>{message[method]}</Typography>
+          <Button variant='contained' sx={{width: '80%', margin: '20px auto'}} onClick={handleClose} >Return Home</Button>
+          <Message content={paymentMessage} />
         </Box>
       </Modal>
     </div>

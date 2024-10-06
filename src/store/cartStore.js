@@ -9,7 +9,7 @@ export const useCartStore = create(
       cartCount: 0,
       cartTotal: 0,
       cartIsOpen: false,
-      paymentModalOpen: false,
+      paymentMessage: "",
 
       
       updateMethod: (newMethod) => set({ method: newMethod }),
@@ -53,8 +53,8 @@ export const useCartStore = create(
         })
       },
       toggleCartIsOpen: () => set({ cartIsOpen: !get().cartIsOpen}),
-      handleOpenPayment: () => set({ paymentModalOpen: true}),
-      handleClosePayment: () => set({ paymentModalOpen: false}),
+      setPaymentMessage: (msg) => set({ paymentMessage: msg}),
+      clearPaymentMessage: () => set({ paymentMessage: ""}),
     }),
     {
       name: 'cart-storage', 

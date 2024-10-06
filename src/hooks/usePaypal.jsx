@@ -1,12 +1,12 @@
-import { useState } from "react";
+
 import { useCartStore } from "../store/cartStore";
 
 const AUTH_BASE_URL = import.meta.env.VITE_AUTH_BASE_URL;
 
 export function usePaypal() {
-    const { cartItems, cartTotal, handleClosePayment, clearCart } = useCartStore();
+    const { cartItems, cartTotal, setPaymentMessage } = useCartStore();
 
-    const [message, setMessage] = useState("");
+    // const [message, setMessage] = useState("");
 
     const createOrder = async () => {
         try {
@@ -43,7 +43,7 @@ export function usePaypal() {
           }
         } catch (error) {
           console.error(error);
-          setMessage(`Could not initiate PayPal Checkout...${error}`);
+          setPaymentMessage(`Could not initiate PayPal Checkout...${error}`);
         }
       }
     
@@ -82,7 +82,7 @@ export function usePaypal() {
             // Or go to another URL:  actions.redirect('thank_you.html');
             const transaction =
               orderData.purchase_units[0].payments.captures[0];
-            setMessage(
+            setPaymentMessage(
               `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`,
             );
             console.log(
@@ -90,12 +90,10 @@ export function usePaypal() {
               orderData,
               JSON.stringify(orderData, null, 2),
             );
-            handleClosePayment();
-            clearCart();
           }
         } catch (error) {
           console.error(error);
-          setMessage(
+          setPaymentMessage(
             `Sorry, your transaction could not be processed...${error}`,
           );
         }
@@ -104,6 +102,5 @@ export function usePaypal() {
     return {
         createOrder,
         onApprove,
-        message,
     }
 }

@@ -11,7 +11,7 @@ This system integrates:
     * An API namespace which returns JSON menu data to populate the frontend app,
     * An auth protected browser-based CMS tool for managing that menu data
 
-  [View the Express server code here.](https://github.com/sds-smith/ecomm_server)
+  [View the Express server code here.](https://github.com/sds-smith/ecomm_server)  
   [View the Rails server code here.](https://github.com/sds-smith/restaurant_menu_cms)
 
 The menu data is fetched by the Express server from the API, processed and returned to the Frontend. Payment processing via PayPal API is also handled by the backend. A future release will also include Doordash for delivery options.

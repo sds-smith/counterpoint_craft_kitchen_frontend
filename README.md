@@ -4,7 +4,7 @@ As with some of my other personal portfolio work, this project serves as a playg
 
 Still very much in its infancy stage, this eCommerce React application is one part of a loosely-coupled software system.
 
-This system integrates:
+## System integrations:
   * **Frontend**: React
   * **Backend**: Node/Express
   * **API/ Data management layer**: Ruby on Rails

@@ -41,6 +41,10 @@ export default function CartDrawer() {
     updateMethod(switchMethod[method].update)
   }
 
+  const handleSelectMethod = (selectedMethod) => {
+    updateMethod(selectedMethod)
+  }
+
   const handleClear = () => {
     clearCart();
     toggleCartIsOpen();
@@ -63,10 +67,18 @@ export default function CartDrawer() {
         <Typography variant='h4' textAlign='center'>
           My {capitalize(method)} Order
         </Typography>
-        { method && 
-          <Button sx={{width: '80%', margin: '20px auto'}} variant="outlined" startIcon={switchMethod[method]?.startIcon} onClick={handleSwitchMethod}>
-            {`Switch to ${switchMethod[method]?.to}`}
-          </Button>
+        { method  
+          ?   <Button sx={{width: '80%', margin: '20px auto'}} variant="outlined" startIcon={switchMethod[method]?.startIcon} onClick={handleSwitchMethod}>
+                {`Switch to ${switchMethod[method]?.to}`}
+              </Button>
+          : <>
+              <Button sx={{width: '80%', margin: '10px auto'}} variant="outlined" startIcon={<StorefrontIcon />} onClick={()=>handleSelectMethod('pickup')}>
+                Select Pickup
+              </Button>
+              <Button sx={{width: '80%', margin: '10px auto'}} variant="outlined" startIcon={<DeliveryDiningIcon />} onClick={()=>handleSelectMethod('delivery')}>
+                Select Delivery
+              </Button>
+            </>
         }
         {Object.entries(cartItems).map(([id, quantity]) => (
           <CartItemCard 

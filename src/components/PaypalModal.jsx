@@ -6,11 +6,6 @@ import Button from '@mui/material/Button';
 import { useCartStore } from '../store/cartStore';
 import { Typography } from '@mui/material';
 
-// Renders errors or successfull transactions on the screen.
-function Message({ content }) {
-  return <Typography variant='body2' textAlign={'center'} sx={{mt: 4}}>{content}</Typography>;
-}
-
 const style = {
   position: 'absolute',
   display: 'flex',
@@ -53,7 +48,7 @@ export default function PaypalModal() {
           <Typography variant='h5' textAlign={'center'}>Thank you for your Order</Typography>
           <Typography variant='body1' textAlign={'center'}>{message[method]}</Typography>
           <Button variant='contained' sx={{width: '80%', margin: '20px auto'}} onClick={handleClose} >Return Home</Button>
-          <Message content={paymentMessage} />
+          <Typography variant='body2' textAlign={'center'} sx={{mt: 4}}>{paymentMessage}</Typography>
         </Box>
       </Modal>
     </div>

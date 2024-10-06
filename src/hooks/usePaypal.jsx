@@ -6,8 +6,6 @@ const AUTH_BASE_URL = import.meta.env.VITE_AUTH_BASE_URL;
 export function usePaypal() {
     const { cartItems, cartTotal, setPaymentMessage } = useCartStore();
 
-    // const [message, setMessage] = useState("");
-
     const createOrder = async () => {
         try {
           const response = await fetch(`${AUTH_BASE_URL}/paypal/orders`, {
@@ -15,22 +13,15 @@ export function usePaypal() {
             headers: {
               "Content-Type": "application/json",
             },
-            // use the "body" param to optionally pass additional order information
-            // like product ids and quantities
             body: JSON.stringify({
-              cart: [
-                {
-                  id: "YOUR_PRODUCT_ID",
-                  quantity: "YOUR_PRODUCT_QUANTITY",
-                },
-              ],
+              cart: Object.entries(cartItems).map(([id, quantity]) => ({id, quantity})),
               cartItems,
               cartTotal
             }),
           });
     
           const orderData = await response.json();
-          console.log('[paypal.js] createOrder', {orderData})
+
           if (orderData.id) {
             return orderData.id;
           } else {
@@ -51,7 +42,6 @@ export function usePaypal() {
         try {
           const response = await fetch(
             `${AUTH_BASE_URL}/paypal/orders/${data.orderID}/capture`,
-            // `/api/orders/${data.orderID}/capture`,
             {
               method: "POST",
               headers: {
@@ -100,7 +90,7 @@ export function usePaypal() {
       }
     
     return {
-        createOrder,
-        onApprove,
+      createOrder,
+      onApprove,
     }
 }

@@ -10,7 +10,6 @@ export const useCartStore = create(
       cartTotal: 0,
       cartIsOpen: false,
       paymentMessage: "",
-
       
       updateMethod: (newMethod) => set({ method: newMethod }),
       addItemToCart: (itemId, quantity, price) => {

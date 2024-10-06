@@ -21,14 +21,12 @@ The menu data is fetched by the Express server from the API, processed and retur
   * Zustand state management
   * PayPal SDK for rendering payment buttons
 
-Future iterations will include:
-  * Doordash SDK for delivery options
-
-<!-- ![Pay Screen](https://github.com/sds-smith/restaurant_menu/blob/main/public/screenshots/55663C0C-9B58-4D15-B9BD-3DBB159C0C96_1_201_a.jpeg) -->
-
 <p align="center">
-  <img src="https://github.com/sds-smith/restaurant_menu/blob/main/public/screenshots/55663C0C-9B58-4D15-B9BD-3DBB159C0C96_1_201_a.jpeg" width="350" title="Pay Screen">
-  <!-- <img src="your_relative_path_here_number_2_large_name" width="350" alt="accessibility text"> -->
+  <img src="https://github.com/sds-smith/restaurant_menu/blob/main/public/screenshots/55663C0C-9B58-4D15-B9BD-3DBB159C0C96_1_201_a.jpeg" width="50" title="Pay Screen">
+  <img src="https://github.com/sds-smith/restaurant_menu/blob/main/public/screenshots/7CF445AB-1FEB-4C87-BA3F-6AD0F5465849_1_201_a.jpeg" width="50" title="Cart Screen">
+  <img src="https://github.com/sds-smith/restaurant_menu/blob/main/public/screenshots/CB39427C-BB68-4E20-9A01-30367FA13128_1_105_c.jpeg" width="50" title="Home Screen">
+  <img src="https://github.com/sds-smith/restaurant_menu/blob/main/public/screenshots/D88C0D50-288A-41CA-842B-F7134B6CFF47_1_201_a.jpeg" width="50" title="Item Screen">
+  <img src="https://github.com/sds-smith/restaurant_menu/blob/main/public/screenshots/F533C407-AB63-4677-B3B4-5024B9A6224B_1_201_a.jpeg" width="50" title="Menu Screen">
 </p>
 
 

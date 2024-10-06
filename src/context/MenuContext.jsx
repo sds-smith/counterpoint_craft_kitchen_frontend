@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, useCallback } from "react";
-// import { createOrder } from "../utils/paypal";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -26,11 +25,6 @@ export const MenuProvider = ({children}) => {
       .catch(({message}) => setMenuError(message))
       .finally(() => setLoadingMenu(false))
   },[])
-
-  // useEffect(() => {
-  //   createOrder()
-  //     .then(orderResponse=> console.log('[MenuContext]', {orderResponse}))
-  // },[])
 
   const getMenuItemsByCategory = useCallback((category) => menuItemsByCategory[category], [menuItemsByCategory]);
   const getMenuItemById = useCallback((id) => menuItemsById[id], [menuItemsById]);

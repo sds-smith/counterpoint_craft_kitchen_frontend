@@ -13,34 +13,37 @@ export const useCartStore = create(
       
       updateMethod: (newMethod) => set({ method: newMethod }),
       addItemToCart: (itemId, quantity, price) => {
+        const starting = get();
         set({ 
           cartItems: { 
-            ...get().cartItems, 
-            [itemId]: (get().cartItems[itemId] || 0) + quantity
+            ...starting.cartItems, 
+            [itemId]: (starting.cartItems[itemId] || 0) + quantity
           },
-          cartCount: get().cartCount + quantity,
-          cartTotal: (get().cartTotal + (quantity * price)).toFixed(2)
+          cartCount: starting.cartCount + quantity,
+          cartTotal: (parseFloat(starting.cartTotal) + (quantity * price)).toFixed(2)
         });
       },
       removeItemFromCart: (itemId, quantity, price) => {
-        const cart = get().cartItems;
+        const starting = get();
+        const cart = starting.cartItems;
         delete cart[itemId];
         set({
           cartItems: cart,
-          cartCount: get().cartCount - quantity,
-          cartTotal: (get().cartTotal - (quantity * price)).toFixed(2)
+          cartCount: starting.cartCount - quantity,
+          cartTotal: (parseFloat(starting.cartTotal) - (quantity * price)).toFixed(2)
         })
       },
       editItemQuantity: (itemId, quantity, price) => {
-        const originalItemQty = get().cartItems[itemId]
+        const starting = get();
+        const originalItemQty = starting.cartItems[itemId]
         const originalItemSubtotal = originalItemQty * price
         set({ 
           cartItems: { 
-            ...get().cartItems, 
+            ...starting.cartItems, 
             [itemId]: quantity
           },
-          cartCount: get().cartCount - originalItemQty + quantity,
-          cartTotal: (get().cartTotal - originalItemSubtotal + (quantity * price)).toFixed(2)
+          cartCount: starting.cartCount - originalItemQty + quantity,
+          cartTotal: (parseFloat(starting.cartTotal) - originalItemSubtotal + (quantity * price)).toFixed(2)
         });
       },
       clearCart: () => {

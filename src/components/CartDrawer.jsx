@@ -30,7 +30,7 @@ export default function CartDrawer() {
   const [ showCheckout, setShowCheckout ] = useState(false);
   const toggleShowCheckout = () => setShowCheckout(show => !show);
 
-  const checkoutButtonText = showCheckout ? 'Return' : 'Check Out';
+  const checkoutButtonText = showCheckout ? 'Return to Cart' : 'Check Out';
 
   const switchMethod = {
     pickup: {startIcon: <DeliveryDiningIcon />, to: 'Delivery', update: 'delivery'},
@@ -68,7 +68,7 @@ export default function CartDrawer() {
           My {capitalize(method)} Order
         </Typography>
         { method  
-          ?   <Button sx={{width: '80%', margin: '20px auto'}} variant="outlined" startIcon={switchMethod[method]?.startIcon} onClick={handleSwitchMethod}>
+          ?   <Button sx={{width: '80%', margin: '20px auto'}} variant="outlined" startIcon={switchMethod[method]?.startIcon} onClick={handleSwitchMethod} disabled={showCheckout}>
                 {`Switch to ${switchMethod[method]?.to}`}
               </Button>
           : <>
@@ -80,33 +80,35 @@ export default function CartDrawer() {
               </Button>
             </>
         }
-        {Object.entries(cartItems).map(([id, quantity]) => (
-          <CartItemCard 
-            key={id} 
-            id={id} 
-            quantity={quantity} 
-          />
-        ))}
-        <Typography variant='h5' >{`Subtotal: $${cartTotal}`}</Typography>
-        <Button 
-          sx={{width: '80%', margin: '20px auto'}} 
-          variant="contained" 
-          startIcon={<RemoveShoppingCartIcon />} 
-          onClick={handleClear} 
-          disabled={!cartTotal || showCheckout} 
-        >
-          Clear Cart
-        </Button>
-        <Button 
-          sx={{width: '80%', margin: '20px auto'}} 
-          variant="contained" 
-          startIcon={<PaymentIcon />} 
-          onClick={toggleShowCheckout} 
-          disabled={!cartTotal} 
-        >
-          {checkoutButtonText}
-        </Button>
-        { showCheckout && <PaypalCheckout />}
+        <Box sx={{display: 'flex', flexDirection: 'column', paddingBottom: '100px'}} >
+          { !showCheckout && Object.entries(cartItems).map(([id, quantity]) => (
+            <CartItemCard 
+              key={id} 
+              id={id} 
+              quantity={quantity} 
+            />
+          ))}
+          <Typography variant='h5' >{`Subtotal: $${cartTotal}`}</Typography>
+          <Button 
+            sx={{width: '80%', margin: '20px auto'}} 
+            variant="contained" 
+            startIcon={<RemoveShoppingCartIcon />} 
+            onClick={handleClear} 
+            disabled={!cartTotal || showCheckout} 
+          >
+            Clear Cart
+          </Button>
+          <Button 
+            sx={{width: '80%', margin: '20px auto'}} 
+            variant="contained" 
+            startIcon={<PaymentIcon />} 
+            onClick={toggleShowCheckout} 
+            disabled={!cartTotal} 
+          >
+            {checkoutButtonText}
+          </Button>
+          { showCheckout && <PaypalCheckout />}
+        </Box>
       </Box>
     </Drawer>
   );

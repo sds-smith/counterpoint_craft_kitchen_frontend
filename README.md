@@ -15,6 +15,7 @@ Still very much in its infancy stage, this eCommerce React application is one pa
 The menu data is fetched by the Express server from the API, processed and returned to the Frontend. Payment processing via PayPal API is also handled by the backend. A future release will also include Doordash for delivery options.
 
 ## Current frontend tech stack includes:
+  * TypeScript
   * React
   * React-router-dom
   * Material-UI

@@ -27,8 +27,11 @@ export default function Footer() {
   const navigate = useNavigate();
   const fabIcon = {
     pickup: {icon: <StorefrontIcon/>},
-    delivery: {icon: <DeliveryDiningIcon/>}
+    delivery: {icon: <DeliveryDiningIcon/>},
+    default: {icon: <></>}
   }
+
+  const fabIconKey = method ||'default';
 
   const handleClickHome = () => {
     if (cartIsOpen) toggleCartIsOpen()
@@ -43,7 +46,7 @@ export default function Footer() {
             <HomeIcon />
           </IconButton>
           <StyledFab color="secondary" aria-label="add" onClick={toggleCartIsOpen}>
-            {fabIcon[method]?.icon || null}
+            {fabIcon[fabIconKey as keyof typeof fabIcon].icon}
           </StyledFab>
           <Box sx={{ flexGrow: 1 }} />
           <IconButton color="inherit">

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
+import { Category } from '../context/MenuContext';
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: 'relative',
@@ -69,7 +70,11 @@ const ImageMarked = styled('span')(({ theme }) => ({
   transition: theme.transitions.create('opacity'),
 }));
 
-export default function MenuButton({category}) {
+type menuButtonProps = {
+  category: Category
+}
+
+export default function MenuButton({category}: menuButtonProps) {
     const navigate = useNavigate();
 
     return (

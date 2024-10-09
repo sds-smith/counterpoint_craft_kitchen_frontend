@@ -9,7 +9,7 @@ export default function Category() {
   const { category } = useParams();
   const { getMenuItemsByCategory } = useContext(MenuContext);
 
-  const Category = getMenuItemsByCategory(category);
+  const Category = getMenuItemsByCategory(category || "");
 
   const name = Category?.name || '';
   const items = Category?.items || [];
@@ -22,7 +22,7 @@ export default function Category() {
               <h1>{name}</h1>
             </Grid>
             {items.map(item => (
-              <Grid key={item.id} size={{xs: 6, md: 3}} > 
+              <Grid key={`${item.id}`} size={{xs: 6, md: 3}} > 
                 <ItemCard 
                   item={item}
                 />

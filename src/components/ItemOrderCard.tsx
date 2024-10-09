@@ -21,16 +21,16 @@ export default function ItemOrderCard() {
   const itemId = searchParams.get('id');
   const { loadingMenu, getMenuItemById } = useContext(MenuContext);
   const { addItemToCart } = useCartStore();
-  const item = getMenuItemById(itemId);
+  const item = getMenuItemById(itemId || "");
 
   const [ quantity, setQuantity ] = useState(1);
 
-  const photoUrl = item?.photo_url?.length ? item?.photo_url : defaultPhoto[item?.category] || '/src/assets/grilled-cheese.jpg';
+  const photoUrl = item.photo_url?.length ? item?.photo_url : defaultPhoto[item.category as keyof typeof defaultPhoto] || '/src/assets/grilled-cheese.jpg';
 
   const incrementQuantity = () => setQuantity(curr => curr < 8 ? curr + 1 : curr);
   const decrementQuantity = () => setQuantity(curr => curr > 1 ? curr - 1 : curr);
 
-  const handleClickAdd = () => addItemToCart(itemId, quantity, item.price)
+  const handleClickAdd = () => addItemToCart(itemId || "", quantity, item.price)
 
   return (
     <>
@@ -54,7 +54,7 @@ export default function ItemOrderCard() {
                     <b>Price: </b>{item?.price}
                   </Typography>
                   <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-                    <b>Calories: </b>{item?.calories}
+                    <b>Calories: </b>{`${item?.calories}`}
                   </Typography>
                   <Typography variant="body1" sx={{ color: 'text.secondary' }}>
                     <b>Description: </b>{item?.description}

@@ -12,11 +12,11 @@ import { theme } from './utils/theme';
 import './App.css'
 
 function App() {
-  const { menuLoading } = useContext(MenuContext);
+  const { loadingMenu } = useContext(MenuContext);
   
   return (
     <ThemeProvider theme={theme} >
-      { menuLoading
+      { loadingMenu
         ? <h1>Loading</h1>
         : (
           <Routes>

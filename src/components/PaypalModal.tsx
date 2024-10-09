@@ -46,7 +46,7 @@ export default function PaypalModal() {
       >
         <Box sx={style}>
           <Typography variant='h5' textAlign={'center'}>Thank you for your Order</Typography>
-          <Typography variant='body1' textAlign={'center'}>{message[method]}</Typography>
+          <Typography variant='body1' textAlign={'center'}>{message[method as keyof typeof message]}</Typography>
           <Button variant='contained' sx={{width: '80%', margin: '20px auto'}} onClick={handleClose} >Return Home</Button>
           <Typography variant='body2' textAlign={'center'} sx={{mt: 4}}>{paymentMessage}</Typography>
         </Box>

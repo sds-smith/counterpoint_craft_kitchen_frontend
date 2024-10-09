@@ -12,7 +12,7 @@ import { useCartStore } from '../store/cartStore';
 import CartItemCard from './CartItemCard';
 import PaypalCheckout from './PaypalCheckout';
 
-const capitalize = (string) => string ? string[0].toUpperCase() + string.slice(1) : ''
+const capitalize = (string: string) => string ? string[0].toUpperCase() + string.slice(1) : ''
 
 export default function CartDrawer() {
   const navigate = useNavigate();
@@ -38,10 +38,10 @@ export default function CartDrawer() {
   }
 
   const handleSwitchMethod = () => {
-    updateMethod(switchMethod[method].update)
+    updateMethod(switchMethod[method as keyof typeof switchMethod].update)
   }
 
-  const handleSelectMethod = (selectedMethod) => {
+  const handleSelectMethod = (selectedMethod: string) => {
     updateMethod(selectedMethod)
   }
 
@@ -65,11 +65,11 @@ export default function CartDrawer() {
     >
       <Box sx={{display: 'flex', flexDirection: 'column', height: '70vh', paddingBottom: '100px'}}>
         <Typography variant='h4' textAlign='center'>
-          My {capitalize(method)} Order
+          My {capitalize(method || "")} Order
         </Typography>
         { method  
-          ?   <Button sx={{width: '80%', margin: '20px auto'}} variant="outlined" startIcon={switchMethod[method]?.startIcon} onClick={handleSwitchMethod} disabled={showCheckout}>
-                {`Switch to ${switchMethod[method]?.to}`}
+          ?   <Button sx={{width: '80%', margin: '20px auto'}} variant="outlined" startIcon={switchMethod[method as keyof typeof switchMethod]?.startIcon} onClick={handleSwitchMethod} disabled={showCheckout}>
+                {`Switch to ${switchMethod[method as keyof typeof switchMethod]?.to}`}
               </Button>
           : <>
               <Button sx={{width: '80%', margin: '10px auto'}} variant="outlined" startIcon={<StorefrontIcon />} onClick={()=>handleSelectMethod('pickup')}>
@@ -81,11 +81,11 @@ export default function CartDrawer() {
             </>
         }
         <Box sx={{display: 'flex', flexDirection: 'column', paddingBottom: '100px'}} >
-          { !showCheckout && Object.entries(cartItems).map(([id, quantity]) => (
+          { !showCheckout && Object.entries(cartItems).map(([id, quantity])=> (
             <CartItemCard 
               key={id} 
               id={id} 
-              quantity={quantity} 
+              quantity={quantity as number} 
             />
           ))}
           <Typography variant='h5' >{`Subtotal: $${cartTotal}`}</Typography>

@@ -1,7 +1,15 @@
-
+import { ReactNode } from "react";
 import Grid from "@mui/material/Grid2";
 
-export default function PageWrapper(props) {
+type pageWrapperProps = {
+    spacing?: number,
+    rowSpacing?: number,
+    className?: string,
+    style?: {},
+    children: ReactNode
+}
+
+export default function PageWrapper(props: pageWrapperProps) {
     const {children} = props
     const style = props.style || {};
 

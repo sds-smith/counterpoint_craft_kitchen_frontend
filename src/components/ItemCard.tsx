@@ -5,9 +5,14 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import defaultPhoto from '../lib/defaultPhoto'
+import { Item } from '../context/MenuContext';
 
-export default function ItemCard({item}) {
-  const photoUrl = item.photo_url?.length ? item.photo_url : defaultPhoto[item.category];
+type itemCardProps = {
+  item: Item
+}
+
+export default function ItemCard({item}: itemCardProps) {
+  const photoUrl = item.photo_url?.length ? item?.photo_url : defaultPhoto[item.category as keyof typeof defaultPhoto];
   const navigate = useNavigate();
   
   const handleClick = () => {

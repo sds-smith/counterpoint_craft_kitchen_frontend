@@ -38,7 +38,7 @@ export function usePaypal() {
         }
       }
     
-    const onApprove = async (data, actions) => {
+    const onApprove = async (data: { orderID: any; }, actions: { restart: () => any; }) => {
         try {
           const response = await fetch(
             `${AUTH_BASE_URL}/paypal/orders/${data.orderID}/capture`,

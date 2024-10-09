@@ -11,7 +11,7 @@ export default function Landing() {
     const { updateMethod } = useCartStore();
     const navigate = useNavigate();
 
-    const handleClick = (method) => {
+    const handleClick = (method: string) => {
         updateMethod(method);
         navigate(`/order`)
     }

@@ -6,7 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
@@ -15,19 +15,24 @@ import defaultPhoto from '../lib/defaultPhoto'
 import { MenuContext } from '../context/MenuContext';
 import { useCartStore } from '../store/cartStore';
 
-export default function CartItemCard({id, quantity}) {
+export type cartItemCardProps = {
+  id: string,
+  quantity: number
+}
+
+export default function CartItemCard({id, quantity}: cartItemCardProps) {
     const { getMenuItemById } = useContext(MenuContext);
     const { removeItemFromCart, editItemQuantity } = useCartStore();
     const item = getMenuItemById(id)
-    const photoUrl = item?.photo_url?.length ? item?.photo_url : defaultPhoto[item?.category];
+    const photoUrl = item.photo_url?.length ? item?.photo_url : defaultPhoto[item.category as keyof typeof defaultPhoto];
 
     const [ editing, setEditing ] = useState(false);
 
     const handleDelete = () => removeItemFromCart(id, quantity, item.price);
     const handleEdit = () => setEditing(editing => !editing)
 
-    const handleChange = (e) => {
-      editItemQuantity(id, e.target.value, item.price);
+    const handleChange = (e: SelectChangeEvent<string>) => {
+      editItemQuantity(id, Number(e.target.value), item.price);
       handleEdit();
     }
 
@@ -70,7 +75,7 @@ export default function CartItemCard({id, quantity}) {
               </FormControl>
           }
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            {`item Subtotal: ${quantity * item?.price}`}
+            {`item Subtotal: ${quantity * parseFloat(item.price)}`}
           </Typography>
         </CardContent>
         <CardActions sx={{flexDirection: 'column'}}>

@@ -17,6 +17,7 @@ export default function PaypalCheckout() {
 
   const initialOptions = {
     "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
+    "clientId": import.meta.env.VITE_PAYPAL_CLIENT_ID,
     "enable-funding": "venmo",
     "data-sdk-integration-source": "integrationbuilder_sc",
   };

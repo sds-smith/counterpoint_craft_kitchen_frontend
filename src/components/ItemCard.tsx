@@ -19,7 +19,7 @@ export default function ItemCard({item}: itemCardProps) {
     const categoryPath = item.category.toLowerCase();
     const itemPath = item.name.toLowerCase().replaceAll(' ', '_');
     const searchParams = `id=${item.id}`
-    const url = `/order/${categoryPath}/${itemPath}?${searchParams}`
+    const url = `/menu/${categoryPath}/${itemPath}?${searchParams}`
     navigate(url)
   }
 

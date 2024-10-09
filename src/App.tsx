@@ -22,9 +22,9 @@ function App() {
           <Routes>
             <Route path='/' element={<Navigation />}>
               <Route index element={<Landing />} />
-              <Route path='order' element={<Menu />} />
-              <Route path='order/:category' element={<Category />} />
-              <Route path='order/:category/:item' element={<ItemOrderPage />} />
+              <Route path='menu' element={<Menu />} />
+              <Route path='menu/:category' element={<Category />} />
+              <Route path='menu/:category/:item' element={<ItemOrderPage />} />
             </Route>
           </Routes>
         )

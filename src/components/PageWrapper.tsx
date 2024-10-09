@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Grid from "@mui/material/Grid2";
+import BreadCrumbs from "./BreadCrumbs";
 
 type pageWrapperProps = {
     spacing?: number,
@@ -20,6 +21,7 @@ export default function PageWrapper(props: pageWrapperProps) {
             sx={{...style, marginTop: '50px'}}
             { ...props }
         >
+            <BreadCrumbs />
             { children }
         </Grid>
     )

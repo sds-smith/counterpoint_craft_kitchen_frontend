@@ -61,3 +61,17 @@
 .menu_button_img_Kids {
   background-image: url('/src/assets/grilled-cheese.jpg');
 }
+
+.MuiBreadcrumbs-separator {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.breadcrumb_link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.breadcrumb_link:visited {
+  color: rgba(0, 0, 0, 0.87);
+}

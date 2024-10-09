@@ -13,7 +13,7 @@ export default function Landing() {
 
     const handleClick = (method: string) => {
         updateMethod(method);
-        navigate(`/order`)
+        navigate(`/menu`)
     }
 
     return (

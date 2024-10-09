@@ -20,7 +20,7 @@ const style = {
   p: 4,
 };
 
-export default function PaypalModal() {
+export default function OrderCompleteDialog() {
   const navigate = useNavigate();
   const { paymentMessage, clearPaymentMessage, clearCart, toggleCartIsOpen, method } = useCartStore();
 

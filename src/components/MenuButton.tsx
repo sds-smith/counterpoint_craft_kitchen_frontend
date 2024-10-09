@@ -22,7 +22,7 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
       opacity: 0,
     },
     '& .MuiTypography-root': {
-      border: '4px solid currentColor',
+      bmenu: '4px solid currentColor',
     },
   },
 }));
@@ -83,7 +83,7 @@ export default function MenuButton({category}: menuButtonProps) {
       style={{
         width: '30%',
       }}
-      onClick={() => navigate(`/order/${category.name.toLowerCase()}`)}
+      onClick={() => navigate(`/menu/${category.name.toLowerCase()}`)}
     >
       <ImageSrc className={`menu_button_img_${category.name}`} />
       <ImageBackdrop className="MuiImageBackdrop-root" />
